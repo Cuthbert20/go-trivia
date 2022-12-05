@@ -3,9 +3,25 @@ version: '3.8'
 services:
   web:
     build: .
+    env_file:
+      - .env
     ports:
       - 3001:3001
     volumes:
       - .:/usr/src/app
       #using air instead of go run
     command: air cmd/main.go -b 0.0.0.0
+  #going to use a ORM lib GORM instead of using raw sql (For fun!)
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_POSSWORD=${DB_PASSWORD}
+      - POSTGREST_DB=${DB_NAME}
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-db:/var/lib/postgres/data
+#named volume     
+volumes:
+  postgres-db:
