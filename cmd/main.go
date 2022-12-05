@@ -1,13 +1,15 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/Cuthbert20/go-triva/database"
+	"github.com/gofiber/fiber/v2"
+)
 
 func main() {
+	database.ConnectDb()
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Helloo,  Stu lets have some fun with Trivia!!! test")
-	})
+	setupRoutes(app)
 
 	app.Listen(":3001")
 }
