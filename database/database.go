@@ -5,8 +5,10 @@ import (
 	"log"
 	"os"
 
+	"github.com/Cuthbert20/go-triva/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 type Dbinstance struct {
@@ -23,7 +25,7 @@ func ConnectDb() {
 	)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(Logger.info),
+		Logger: logger.Default.LogMode(logger.info),
 	})
 
 	if err != nil {
@@ -36,4 +38,8 @@ func ConnectDb() {
 
 	log.Println("running migrations")
 	db.AutoMigrate(&models.Fact{})
+
+	DB = Dbinstance{
+		Db: db,
+	}
 }
