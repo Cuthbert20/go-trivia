@@ -29,3 +29,11 @@ func CreateFact(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(fact)
 }
+
+func ListFact(c *fiber.Ctx) error {
+	id := c.Params("ID")
+	facts := []models.Fact{}
+	var fact models.Fact
+	database.DB.Db.Find(&facts, id)
+	return c.JSON(fact)
+}
