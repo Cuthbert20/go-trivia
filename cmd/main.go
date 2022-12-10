@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Cuthbert20/go-triva/database"
+	"github.com/Cuthbert20/go-trivia/database"
 	"github.com/gofiber/fiber/v2"
 )
 

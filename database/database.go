@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Cuthbert20/go-triva/models"
+	"github.com/Cuthbert20/go-trivia/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -25,7 +25,7 @@ func ConnectDb() {
 	)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.info),
+		Logger: logger.Default.LogMode(logger.Info),
 	})
 
 	if err != nil {
